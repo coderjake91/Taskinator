@@ -3,6 +3,7 @@ var buttonEl = document.querySelector("#save-task");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 
 
+//task handler function that creates new list elements and appends them to the unordered-list element
 var createTaskHandler = function(){
         var listItemEl = document.createElement("li");
         listItemEl.className = "task-item";
