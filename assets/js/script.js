@@ -3,8 +3,8 @@ var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 
 
-//task handler function that creates new list elements and appends them to the unordered-list element, accepts event object as am argument
-var createTaskHandler = function(event){
+
+var taskFormHandler = function(event){
 
     //prevent browsers default behavior-i.e. refreshing upon form submission
     event.preventDefault();
@@ -12,6 +12,17 @@ var createTaskHandler = function(event){
     var taskNameInput = document.querySelector("input[name='task-name']").value;
     var taskTypeInput = document.querySelector("select[name='task-type']").value;
 
+    //package up data as an object
+    var taskDataObj = {
+        name: taskNameInput,
+        type: taskTypeInput
+    };
+
+    //send it as an argument to createTaskEl
+    createTaskEl(taskDataObj);
+};
+
+var createTaskEl = function(taskDataObj){
     //create list item
     var listItemEl = document.createElement("li");
     //style list item
@@ -20,7 +31,7 @@ var createTaskHandler = function(event){
     //create new div inside of list element, assign a style class, add HTML content to div (task name and task type from form)
     var taskInfoEl = document.createElement("div");
     taskInfoEl.className = "task-info";
-    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskNameInput + "</h3><span class= 'task-type'>" + taskTypeInput + "</span>";
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class= 'task-type'>" + taskDataObj.type + "</span>";
 
     //append new div with content to new list element (task item)
     listItemEl.appendChild(taskInfoEl);
@@ -30,4 +41,4 @@ var createTaskHandler = function(event){
 };
 
  //add an event listener to formEl, act upon submit and create a new list element with text content/style, then append to parent "ul" element
- formEl.addEventListener("submit", createTaskHandler);
+ formEl.addEventListener("submit", taskFormHandler);
