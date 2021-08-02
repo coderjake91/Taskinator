@@ -9,9 +9,23 @@ var createTaskHandler = function(event){
     //prevent browsers default behavior-i.e. refreshing upon form submission
     event.preventDefault();
 
+    var taskNameInput = document.querySelector("input[name='task-name']").value;
+    var taskTypeInput = document.querySelector("select[name='task-type']").value;
+
+    //create list item
     var listItemEl = document.createElement("li");
+    //style list item
     listItemEl.className = "task-item";
-    listItemEl.textContent = "This is a new task";
+
+    //create new div inside of list element, assign a style class, add HTML content to div (task name and task type from form)
+    var taskInfoEl = document.createElement("div");
+    taskInfoEl.className = "task-info";
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskNameInput + "</h3><span class= 'task-type'>" + taskTypeInput + "</span>";
+
+    //append new div with content to new list element (task item)
+    listItemEl.appendChild(taskInfoEl);
+
+    //add entire list item to unordered list
     tasksToDoEl.appendChild(listItemEl);
 };
 
