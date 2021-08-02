@@ -32,7 +32,6 @@ var createTaskEl = function(taskDataObj){
     var taskInfoEl = document.createElement("div");
     taskInfoEl.className = "task-info";
     taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class= 'task-type'>" + taskDataObj.type + "</span>";
-
     //append new div with content to new list element (task item)
     listItemEl.appendChild(taskInfoEl);
 
